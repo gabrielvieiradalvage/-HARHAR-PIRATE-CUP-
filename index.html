@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pirate Cup HarHar ☠️</title>
+    <!-- Fontes do Google: Pirata One para Títulos, VT323 para texto estilo RPG Indie -->
+    <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=VT323&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 🎨 Paleta de Cores (Ghost Green Edition) */
+        :root {
+            --ghost-green: #39FF88;
+            --magic-glow: #1AFF66;
+            --ocean-deep: #0D3B26;
+            --dark-base: #0B0F0E;
+            --shadow-grey: #151A18;
+            --treasure-gold: #D4AF37;
+            --spirit-mist: #E8F5E9;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--dark-base);
+            color: var(--spirit-mist);
+            font-family: 'VT323', monospace;
+            font-size: 1.4rem;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Pirata One', cursive;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        /* 🏴 HERO SECTION */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at center, var(--ocean-deep) 0%, var(--dark-base) 80%);
+            border-bottom: 3px solid var(--ghost-green);
+            box-shadow: 0 10px 30px rgba(57, 255, 136, 0.2);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.2) 2px, rgba(0,0,0,0.2) 4px);
+            pointer-events: none; /* Efeito Scanline de jogo indie */
+        }
+
+        .logo {
+            font-size: 5rem;
+            color: var(--spirit-mist);
+            text-shadow: 0 0 10px var(--magic-glow), 0 0 20px var(--ghost-green), 0 0 40px var(--ghost-green);
+            animation: pulse-glow 2s infinite alternate;
+            margin-bottom: 10px;
+            z-index: 1;
+        }
+
+        .logo span {
+            color: var(--treasure-gold);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+        }
+
+        .tagline {
+            font-size: 1.8rem;
+            color: var(--ghost-green);
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+            z-index: 1;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            z-index: 1;
+        }
+
+        .btn {
+            background-color: var(--shadow-grey);
+            color: var(--spirit-mist);
+            border: 2px solid var(--ghost-green);
+            padding: 15px 30px;
+            font-family: 'VT323', monospace;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            box-shadow: 0 0 10px rgba(57, 255, 136, 0.1);
+        }
+
+        .btn:hover {
+            background-color: var(--ghost-green);
+            color: var(--dark-base);
+            box-shadow: 0 0 20px var(--magic-glow);
+            transform: translateY(-3px);
+        }
+
+        .btn-gold {
+            border-color: var(--treasure-gold);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+        }
+
+        .btn-gold:hover {
+            background-color: var(--treasure-gold);
+            box-shadow: 0 0 20px var(--treasure-gold);
+        }
+
+        /* 👻 SOBRE O JOGO */
+        .section {
+            padding: 80px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            color: var(--ghost-green);
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px rgba(26, 255, 102, 0.5);
+        }
+
+        .story-text {
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+        }
+
+        .highlight {
+            color: var(--treasure-gold);
+        }
+
+        /* 🏆 GAMEPLAY GRID */
+        .gameplay-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .card {
+            background-color: var(--shadow-grey);
+            padding: 30px;
+            border: 1px solid var(--ocean-deep);
+            border-top: 3px solid var(--ghost-green);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(26, 255, 102, 0.1);
+            border-color: var(--ghost-green);
+        }
+
+        .card h3 {
+            font-size: 2rem;
+            color: var(--ghost-green);
+            margin-bottom: 15px;
+        }
+
+        /* ✨ ANIMAÇÕES */
+        @keyframes pulse-glow {
+            from { text-shadow: 0 0 10px var(--magic-glow), 0 0 20px var(--ghost-green); }
+            to { text-shadow: 0 0 20px var(--magic-glow), 0 0 30px var(--ghost-green), 0 0 50px var(--ghost-green); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 🏴 HERO SECTION -->
+    <header class="hero">
+        <h1 class="logo">☠️ PIRATE CUP<br><span>HARHAR!</span></h1>
+        <p class="tagline">"Nem a morte encerrou a disputa..."</p>
+        <div class="buttons">
+            <button class="btn">▶ Entrar na Arena</button>
+            <button class="btn btn-gold">☠ Conhecer os Capitães</button>
+        </div>
+    </header>
+
+    <!-- 👻 SOBRE O JOGO -->
+    <section class="section" id="sobre">
+        <h2 class="section-title">👻 A Maldição Eterna</h2>
+        <p class="story-text">Após séculos de guerras e traições, capitães piratas retornaram dos mortos…</p>
+        <p class="story-text">Não por vingança. Não por glória.</p>
+        <p class="story-text">Mas por uma <span class="highlight">última competição</span>.</p>
+        <br>
+        <h2 class="section-title">⚓ HARHAR! PIRATE CUP</h2>
+        <p class="story-text">Onde riquezas inimagináveis são apostadas…<br>E apenas um capitão conquistará a <span class="highlight">coroa eterna</span>.</p>
+    </section>
+
+    <!-- 🏆 GAMEPLAY -->
+    <section class="section" id="gameplay" style="background-color: var(--shadow-grey); max-width: 100%; border-top: 1px solid var(--ocean-deep);">
+        <div style="max-width: 1000px; margin: 0 auto;">
+            <h2 class="section-title">🏆 O que te aguarda</h2>
+            <div class="gameplay-grid">
+                
+                <div class="card">
+                    <h3>⚔ Competições</h3>
+                    <p>Corridas marítimas, desafios brutais, arenas mortais e minigames que testarão sua alma pirata.</p>
+                </div>
+
+                <div class="card">
+                    <h3>👻 Capitães Fantasma</h3>
+                    <p>Encare lendas dos sete mares. Cada capitão possui poderes amaldiçoados e uma personalidade única.</p>
+                </div>
+
+                <div class="card">
+                    <h3>💰 Tesouros</h3>
+                    <p>Aposte alto. Colecione mapas antigos, relíquias amaldiçoadas e o ouro perdido das profundezas.</p>
+                </div>
+
+                <div class="card">
+                    <h3>🌊 Exploração</h3>
+                    <p>Navegue por ilhas enevoadas, invada tumbas esquecidas e desbrave mares assombrados.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
