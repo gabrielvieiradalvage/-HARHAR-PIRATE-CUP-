@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pirate Cup HarHar ☠️</title>
+    <title>DRAFT - Pirate Cup HarHar ☠️</title>
     <!-- Fontes do Google -->
     <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=VT323&display=swap" rel="stylesheet">
     
@@ -34,6 +34,36 @@
             font-family: 'Pirata One', cursive;
             font-weight: normal;
             margin: 0;
+        }
+
+        /* Efeito de Scanline (TV antiga indie) */
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Banner de Draft no Canto */
+        .draft-badge {
+            position: fixed;
+            top: 25px;
+            right: -45px;
+            background: #ff4444;
+            color: white;
+            padding: 5px 50px;
+            transform: rotate(45deg);
+            z-index: 10000;
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(255, 68, 68, 0.5);
+            letter-spacing: 2px;
+            border: 2px solid white;
+            font-family: 'VT323', monospace;
+            font-size: 1.5rem;
+            text-transform: uppercase;
         }
 
         /* 🏴 HERO SECTION */
@@ -142,7 +172,7 @@
             color: var(--treasure-gold);
         }
 
-        /* 🏆 CAPITÃES E PROTAGONISTA (NOVO) */
+        /* 🏆 CAPITÃES E PROTAGONISTA */
         .capitaes-container {
             display: flex;
             flex-direction: column;
@@ -150,7 +180,6 @@
             margin-top: 40px;
         }
 
-        /* Protagonista em destaque */
         .protagonista-card {
             background: linear-gradient(135deg, var(--shadow-grey), #1a0000);
             border: 2px solid #ff4444;
@@ -180,7 +209,6 @@
             border: 3px solid var(--treasure-gold);
         }
 
-        /* Rivais Grid */
         .rivais-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -221,7 +249,6 @@
             margin-bottom: 15px;
         }
 
-        /* 🏆 PROVAS (NOVO) */
         .provas-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -243,10 +270,112 @@
             box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
         }
 
+        /* 🕹️ ARENA DE EXECUÇÃO (GAME ENGINE) */
+        .arena-container {
+            max-width: 900px;
+            margin: 40px auto 0;
+            border: 4px solid var(--ghost-green);
+            border-radius: 10px;
+            background-color: #000;
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 30px rgba(57, 255, 136, 0.2);
+        }
+
+        .arena-bg {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            opacity: 0.2;
+            background-image: repeating-linear-gradient(45deg, #111 25%, transparent 25%, transparent 75%, #111 75%, #111), 
+                              repeating-linear-gradient(45deg, #111 25%, #000 25%, #000 75%, #111 75%, #111);
+            background-size: 20px 20px;
+        }
+
+        .arena-content {
+            z-index: 10;
+            text-align: center;
+        }
+
+        .arena-status {
+            color: rgba(57, 255, 136, 0.6);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            font-size: 1.2rem;
+        }
+
+        .loading-bar {
+            width: 300px;
+            height: 10px;
+            background-color: var(--ocean-deep);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .loading-fill {
+            height: 100%;
+            background-color: var(--ghost-green);
+            width: 30%;
+            animation: loadingAnim 2s infinite linear;
+        }
+
+        /* Overlay para clicar e jogar */
+        .arena-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 20;
+            backdrop-filter: blur(2px);
+        }
+
+        .arena-container:hover .arena-overlay {
+            opacity: 1;
+        }
+
+        .btn-engine {
+            background-color: var(--ghost-green);
+            color: var(--dark-base);
+            font-family: 'Pirata One', cursive;
+            font-size: 3rem;
+            padding: 15px 50px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 30px rgba(57, 255, 136, 0.6);
+            transition: transform 0.2s;
+        }
+
+        .btn-engine:hover {
+            transform: scale(1.05);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--ocean-deep);
+            color: rgba(232, 245, 233, 0.4);
+            margin-top: 60px;
+        }
+
         /* ✨ ANIMAÇÕES */
         @keyframes pulse-glow {
             from { text-shadow: 0 0 10px var(--magic-glow), 0 0 20px var(--ghost-green); }
             to { text-shadow: 0 0 20px var(--magic-glow), 0 0 30px var(--ghost-green), 0 0 50px var(--ghost-green); }
+        }
+
+        @keyframes loadingAnim {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(300px); }
         }
 
         /* Responsividade Básica */
@@ -255,14 +384,23 @@
                 flex-direction: column;
                 text-align: center;
             }
+            .loading-bar { width: 200px; }
+            @keyframes loadingAnim {
+                0% { transform: translateX(-100%); }
+                100% { transform: translateX(200px); }
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- Elementos do DRAFT -->
+    <div class="scanlines"></div>
+    <div class="draft-badge">DRAFT v2.0</div>
+
     <!-- 🏴 HERO SECTION -->
     <header class="hero">
-        <h1 class="logo">☠️ PIRATE CUP<br><span>HARHAR!</span></h1>
+        <h1 class="logo">☠️ PIRATE Cup<br><span>HARHAR!</span></h1>
         <p class="tagline">"Nem a morte encerrou a disputa..."</p>
         <div class="buttons">
             <a href="#sobre" class="btn">▶ O Torneio</a>
@@ -379,6 +517,38 @@
 
         </div>
     </section>
+
+    <!-- 🕹️ TELA RESERVADA PARA O JOGO -->
+    <section class="section" id="game-engine" style="background-color: var(--shadow-grey); border-top: 1px solid var(--ocean-deep);">
+        <h2 class="section-title" style="font-size: 3rem;">🕹️ Arena de Execução (Game Engine)</h2>
+        <p class="story-text">Área reservada para o sistema de jogo em HTML5 Canvas / WebGL.</p>
+
+        <div class="arena-container">
+            <div class="arena-bg"></div>
+            
+            <div class="arena-content">
+                <div class="rival-icon" style="color: var(--ghost-green); font-size: 5rem; animation: pulse-glow 2s infinite alternate;">⚓</div>
+                <h3 class="rival-name" style="font-size: 3rem;">MOTOR HARHAR v0.1</h3>
+                <p class="arena-status">STATUS: AGUARDANDO INJEÇÃO DE CÓDIGO...</p>
+                
+                <div class="loading-bar">
+                    <div class="loading-fill"></div>
+                </div>
+            </div>
+
+            <!-- Overlay Interativo -->
+            <div class="arena-overlay">
+                <button class="btn-engine">INICIAR ENGINE</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p style="font-family: 'VT323', monospace; font-size: 1.2rem;">
+            © 2024 GABRIEL VIEIRA DALVAGE - HARHAR STUDIOS<br>
+            Projeto GDD (Game Design Document) Interativo
+        </p>
+    </footer>
 
 </body>
 </html>
